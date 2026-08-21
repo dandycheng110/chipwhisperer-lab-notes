@@ -266,7 +266,7 @@
   <header>
     <p class="eyebrow">硬體資安實作筆記</p>
     <h1>ChipWhisperer-Lite:側信道與故障注入實驗</h1>
-    <p class="lede">一片 CW1173 基礎板,在 macOS 上從零建環境,一路做到「不解密碼卻能還原 AES 金鑰」與「一個壞時脈邊緣打當晶片」。</p>
+    <p class="lede">一片 CW1173 基礎板,在 macOS 上從零建環境,一路做到「不解密碼卻能還原 AES 金鑰」「一個壞時脈邊緣繞過密碼驗證」,並延伸到無人機硬體安全研究。</p>
     <div class="meta mono">
       <span>板子 · CW1173 Lite</span>
       <span>目標 · STM32F303 / CWLITEARM</span>
@@ -275,8 +275,9 @@
     </div>
     <div class="badges">
       <span class="badge"><span class="tick">✓</span> 連線測試通過</span>
-      <span class="badge"><span class="tick">✓</span> 16/16 金鑰位元組還原</span>
-      <span class="badge"><span class="tick">✓</span> 5 次故障注入成功</span>
+      <span class="badge"><span class="tick">✓</span> CPA + DPA 還原 16/16 金鑰</span>
+      <span class="badge"><span class="tick">✓</span> 時脈毛刺注入故障</span>
+      <span class="badge"><span class="tick">✓</span> 毛刺繞過密碼驗證</span>
     </div>
   </header>
 
@@ -381,6 +382,64 @@
         <div class="ro"><div class="k">毛刺成功</div><div class="v big" style="color:var(--amber)">5</div></div>
         <div class="ro"><div class="k">當機 / 重置(nRST 救回)</div><div class="v big" style="color:var(--crash)">22</div></div>
       </div>
+    </section>
+
+    <!-- LAB 4 -->
+    <section>
+      <div class="col">
+        <p class="lab-label"><span class="no">04</span> Lab · 進階故障注入</p>
+        <h2>一個毛刺,繞過密碼驗證</h2>
+        <p>韌體的 <code>'p'</code> 指令比對密碼(正解 <code>"touch"</code>),<code>passok</code> 預設為 <b>1</b>,只在比對到不符時設成 0。攻擊時送一組<b>錯的</b>密碼,正常會被拒絕;但在比對迴圈執行時下毛刺,讓「設為 0」那一步被跳過,<code>passok</code> 就保持 1 —— <span class="term">錯的密碼被判定為通過</span>。這正是繞過安全開機、跳過韌體簽章檢查的同一個原語。</p>
+      </div>
+      <div class="readout">
+        <div class="ro"><div class="k">無毛刺基準(錯密碼)</div><div class="v">passok = 0 · 拒絕 ✓</div></div>
+        <div class="ro"><div class="k">毛刺後(同樣錯密碼)</div><div class="v ok">passok = 1 · 驗證繞過</div></div>
+      </div>
+      <div class="readout">
+        <div class="ro"><div class="k">成功繞過</div><div class="v big" style="color:var(--amber)">4</div></div>
+        <div class="ro"><div class="k">掃描 / 當機</div><div class="v big">4940 · <span style="color:var(--crash)">286</span></div></div>
+      </div>
+    </section>
+
+    <!-- LAB 5 -->
+    <section>
+      <div class="col">
+        <p class="lab-label"><span class="no">05</span> Lab · SCA 方法二 · DPA</p>
+        <h2>DPA:另一條路,也能還原金鑰</h2>
+        <p><span class="term">DPA(差分功耗分析)</span>換個角度:靠「Sbox 輸出某個 bit 是 0 還是 1,平均功耗會差一點點」把波形分成兩群相減,正確金鑰會浮現最大峰值。它比 CPA 弱、需要更多波形——下表就是最好的證明。</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>波形數</th><th>CPA 還原</th><th>DPA 還原</th></tr></thead>
+          <tbody>
+            <tr><td>100</td><td>16 / 16</td><td>4 / 16</td></tr>
+            <tr><td>300</td><td>16 / 16</td><td>14 / 16</td></tr>
+            <tr class="hl"><td>700</td><td>16 / 16</td><td>16 / 16</td></tr>
+            <tr><td>2000</td><td>16 / 16</td><td>16 / 16</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="col subtle">CPA 只要 <b>100</b> 條就破全金鑰;單 bit DPA 要約 <b>700</b> 條才追上。兩種方法最終都還原了完整 AES-128 金鑰——這也是為什麼實務上 CPA 是主流。</p>
+    </section>
+
+    <!-- DRONE -->
+    <section>
+      <div class="col">
+        <p class="lab-label"><span class="no">延伸</span> 從桌上練習到無人機安全</p>
+        <h2>你剛練的兩招,正是攻破無人機的兩把鑰匙</h2>
+        <p>目標晶片是 STM32F303,而絕大多數開源飛控(Pixhawk、ArduPilot / PX4、Betaflight)用的是 STM32F4 / F7 / H7——<b>同一個 ARM Cortex-M 家族</b>。桌上做到的事,換一片飛控晶片幾乎照搬。</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3><span class="swatch" style="background:var(--amber)"></span>韌體萃取 · 繞過安全開機</h3>
+          <p>飛控韌體常用 STM32 的讀取保護(RDP)上鎖。用電壓/時脈毛刺可在保護判斷的瞬間繞過——就是你剛做的「毛刺繞過密碼」的同一招,換成晶片內部的檢查。</p>
+        </div>
+        <div class="card">
+          <h3><span class="swatch" style="background:var(--accent)"></span>圖傳 / 遙測金鑰側信道</h3>
+          <p>加密圖傳、MAVLink 簽章、配對金鑰都要跑 AES/HMAC。量到那段功耗,CPA/DPA 就能挖出金鑰——跟桌上這次一模一樣。</p>
+        </div>
+      </div>
+      <p class="col subtle" style="margin-top:20px;">CW-Lite 的 20-pin 連接埠能對<b>外部目標</b>輸出毛刺與量功耗,所以可以接一片真實的 STM32 飛控或 Nucleo 做實驗。完整研究路線(含 MAVLink 通訊安全與合規邊界)見 repo 的 <code>無人機安全研究延伸.md</code>。</p>
     </section>
 
     <!-- GOTCHAS -->
