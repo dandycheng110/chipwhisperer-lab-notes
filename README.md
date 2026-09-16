@@ -14,6 +14,12 @@
 **📝 完整文字筆記:** [NOTES.md](NOTES.md)
 **🚁 無人機安全研究延伸:** [無人機安全研究延伸.md](無人機安全研究延伸.md)
 
+## 其他筆記
+
+- **[演進式架構實戰：從單體、微服務到 Docker、Kubernetes 與 AI 雲原生轉型](taobao-architecture-book/README.md)**
+  以淘寶架構演變為教學模型,用問題驅動的方式重現 14 次架構演進,一路銜接到 Serverless、FinOps 與 AI 原生。
+  17 章 + 2 附錄,現代軟體工程課程教材。
+
 ## 內容
 
 - `index.html` — 排版好的網頁版筆記(圖表已內嵌,單檔即可開)
