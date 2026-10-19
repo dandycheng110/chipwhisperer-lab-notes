@@ -15,7 +15,7 @@
 - **METR 2025 RCT**：16 位資深開源開發者、246 個真實任務，多數使用 Cursor。允許用 AI 時完成時間反而多了約 19%。開發者事前預估會快 24%，做完後仍自認快了 20% — [CO/AI](https://getcoai.com/news/study-ai-coding-tools-slow-down-experienced-developers-by-19/)；[IT Brew](https://www.itbrew.com/stories/2025/08/04/ai-coding-tools-might-actually-be-slowing-you-down)（原始報告在 https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/ ，本次無法直接讀取）
 - METR 本身並未主張「AI 全面無效」。研究期間是 2025 年 2 月，之後工具已有進步，結論也有場域特殊性 — [Implicator](https://www.implicator.ai/ai-coding-tools-make-experts-slower-not-faster-new-study-finds/)；[CO/AI](https://getcoai.com/news/study-ai-coding-tools-slow-down-experienced-developers-by-19/)
 - **METR 2026-02 更新**：新實驗從 2025-08 開始，共 57 位開發者、143 個 repo、800 多個任務。回流的開發者任務時間 −18%，新招募者 −4%，但兩者的 95% 信賴區間都跨過 0。有 30–50% 的開發者表示，因為不想在沒有 AI 的情況下做，所以沒提交某些任務。METR 認為加速幅度可能被低估，但現有資料無法證明 — [devs-group](https://devs-group.ch/en/blog/ai-productivity-studies-2026/)；[Matthew Wong](https://www.matthewswong.com/en/blog/metr-developer-productivity-2026-uplift-update/)；[DEV（Gabriel Anhaia）](https://dev.to/gabrielanhaia/metrs-ai-coding-speed-study-broke-too-many-developers-wouldnt-work-without-ai-5afm)
-  - ⚠️ 二手報導的正負號不一致：有報導把它寫成「仍慢 18%」。引用時應以 METR 原文為準 — [Ingenire](https://ingenire.com/blog/metr-2026-developer-productivity-study)；[valueaddvc](https://valueaddvc.com/blog/ai-coding-productivity-study-data-what-metr-mckinsey-and-github-actually-found-in-2026)
+  - ⚠️ 二手報導的正負號不一致：多數寫成「快 18%」，但至少一篇寫成「仍慢 18%」。引用時應以 METR 原文為準。二手報導例 — [Ingenire](https://ingenire.com/blog/metr-2026-developer-productivity-study)；[valueaddvc](https://valueaddvc.com/blog/ai-coding-productivity-study-data-what-metr-mckinsey-and-github-actually-found-in-2026)
 - METR 2026-05 調查了 349 位技術工作者（2026 年 2–4 月）。中位數受訪者自評速度提升 3 倍、工作價值提升 1.4–2 倍。這是自評，不是量測值；來源為二手整理 — [devs-group](https://devs-group.ch/en/blog/ai-productivity-studies-2026/)；[Matthew Wong](https://www.matthewswong.com/en/blog/metr-developer-productivity-2026-uplift-update/)
 - **DORA 2025**：
   - 90% 的技術人員在工作中使用 AI，超過 80% 認為生產力有提升。
@@ -136,12 +136,12 @@
   
   — [LINE Biz-Solutions 官方專欄](https://tw.linebiz.com/column/LINEOA-2026-Price-Plan/)；[chatbotta](https://chatbotta.com/guides/line-oa-pricing/)；[蕃新聞](https://n.yam.com/Article/20261013326597)；[賴管家](https://lineoa.batmobile.com.tw/blogs/lineoa_message_counting)；[SAYA](https://www.saya.com.tw/insight-detail/Line_oa/)
 - 最早查到 2026-11 調價說法的是一篇開發商文章；之後在官方專欄和其他多個來源得到印證 — [actgsys](https://actgsys.com/zh/blog/line-bot-development-cost-guide-2026)
-- **Flex Message**：
-  - carousel 最多 12 個 bubble，尺寸要一致。
-  - 第三方整理：單一 bubble JSON 上限 30 KB，carousel 上限 50 KB。
+- **Flex Message**（以下限制來自第三方，未從官方頁直接讀到）：
+  - carousel 最多 12 個 bubble，尺寸要一致（第三方驗證工具）。
+  - 單一 bubble JSON 上限 30 KB，carousel 上限 50 KB（2026 年第三方錯誤說明；中文部落格也寫 carousel 50 KB）。
   - 有 JSX 轉 Flex JSON 的開源套件。
   
-  — [LINE Developers: Flex Messages](https://developers.line.biz/en/docs/messaging-api/using-flex-messages/)；[Conferbot（413 錯誤）](https://www.conferbot.com/errors/line/413-payload-too-large)；[Mars Tseng（Medium）](https://medium.com/@marstseng/line-flex-message-b83b33483f9d)；[react-line-flex](https://github.com/chaiwattsw/react-line-flex)
+  — [react-line-flex](https://github.com/chaiwattsw/react-line-flex)；[Conferbot（413 錯誤）](https://www.conferbot.com/errors/line/413-payload-too-large)；[Mars Tseng（Medium）](https://medium.com/@marstseng/line-flex-message-b83b33483f9d)；官方說明頁 [LINE Developers: Flex Messages](https://developers.line.biz/en/docs/messaging-api/using-flex-messages/)
 - **LIFF → LINE MINI App**：LY Corp 在 2025-02-12 宣布 LIFF 與 LINE MINI App 將進行品牌整合，建議新的 LIFF app 直接建成 LINE MINI App。整合時間未定，既有的 LIFF app 可以繼續使用 — [LINE Developers News](https://developers.line.biz/ja/news/2025/02/12/line-mini-app/)；[LY Tech（X）](https://x.com/lycorptech_jp/status/1889538306335187248)；[Qiita](https://qiita.com/Hiroto_Aso/items/a3dcf80332e30c7b1991)
 - LINE Notify 已於 2025 年終止，通知類需求要改用 Messaging API — [ke2b](https://ke2b.com/en/line-notify-closing-alt/)
 - 官方 Node.js SDK 是 `@line/bot-sdk`（line/line-bot-sdk-nodejs，Apache-2.0），需要 Node.js 22 以上 — [GitHub: line-bot-sdk-nodejs](https://github.com/line/line-bot-sdk-nodejs)
@@ -320,7 +320,7 @@
   - 全家冷凍：PayNow，或全家自己的寄件服務。
   - 宅配冷凍：黑貓（可透過綠界），或直接和物流商簽約。
   
-  PAYUNi 和 7-11 同屬統一集團，冷鏈選項看起來最完整。
+  在這次查到的資料裡，PAYUNi 的 7-11 冷鏈選項（大宗與店到店都有）看起來最完整。PAYUNi 與 7-11 同屬統一集團是一般認知，本次沒有找到來源查證。
 - **Serverless 部署的坑**：
   - PAYUNi 要求 API 呼叫來源 IP 白名單，但 Vercel／Cloudflare 這類 serverless 預設沒有固定出口 IP，需要固定 IP 的代理或 VPS。
   - 綠界提醒 ReturnURL 不要設在國外 CDN 網址上，而 Vercel／Cloudflare 本身就是 CDN 架構。可能需要獨立的回呼端點；實際影響沒有驗證。
@@ -352,7 +352,7 @@
 - **官方批次匯入頁**：要使用範例檔填寫；目前只支援 Windows 系統的 Microsoft Excel；批次匯入單次上限 100 筆 — [7-ELEVEN 交貨便：批次匯入](https://myship2.7-11.com.tw/C2C/Import)
 - 賣貨便說明中心：匯入功能適合在外部接單、代客下單的賣家；大量訂單匯入和合併訂單不能使用折價券／折扣碼 — [7-ELEVEN 賣貨便說明中心](https://myship.7-11.com.tw/Home/HelpCenter)
 - **一次列印多張**：在賣貨便勾選多筆訂單，把交貨便代碼傳到「OPEN POINT」App，再到 ibon 掃 QR Code 一次列印 — [傑昇通信](https://www.jyes.com.tw/news.php?act=view&id=9357)。有使用者分享，上傳範例檔後還要在 OPEN POINT App 的「寄件 → 我的包裹」完成匯入，才能到 ibon 列印（個人經驗，非官方）— [Threads 使用者分享](https://www.threads.com/@yang.badminton.diary/post/DDO_nFzyqus?hl=zh-tw)
-- 賣家後台可以勾選待出貨訂單批次列印交貨便服務單（快收便）— [ShixiNote](https://shixinote.com/%E8%B3%A3%E8%B2%A8%E4%BE%BF%E6%95%99%E5%AD%B8/)
+- 賣家後台可以勾選待出貨訂單批次列印交貨便服務單（快收便）。這條來自搜尋摘要，無法確定出自哪一篇，可能是 ShixiNote 或 SHOPLINE 的說明 — [ShixiNote](https://shixinote.com/%E8%B3%A3%E8%B2%A8%E4%BE%BF%E6%95%99%E5%AD%B8/)；[SHOPLINE：7-11 C2C 交貨便出貨流程](https://support.shoplineapp.com/hc/zh-tw/articles/206372425-7-11-C2C-%E4%BA%A4%E8%B2%A8%E4%BE%BF-%E5%87%BA%E8%B2%A8%E6%B5%81%E7%A8%8B)
 
 ### Inferences
 - **「一鍵匯出」的實作**（推測）：
@@ -617,7 +617,7 @@ DORA 2025 明確指出，沒有這些控制機制時，AI 帶來的高變更量�
   | 項目 | A. 多租戶共用（約 20 家店分攤） | B. 每店獨立一套 | 備註 |
   |---|---|---|---|
   | 前端／API 主機 | Vercel Pro US$20 ÷ 20 ≈ NT$32 | Vercel Pro 共用帳號，或 Cloudflare US$5 起 ≈ NT$32–160 | Hobby 禁止商用 |
-  | 資料庫 | Supabase Pro US$25（加 compute 升級約 US$25–55）÷ 20 ≈ NT$40–90 | 每店一個專案，約 US$10 compute ≈ NT$320（第一個專案含在 Pro 的 US$25 內） | Free 會暫停，不適合正式營運 |
+  | 資料庫 | Supabase Pro US$25，若升級 compute 假設總計 US$25–55（升級價未查證）÷ 20 ≈ NT$40–90 | 每店一個專案，約 US$10 compute ≈ NT$320（第一個專案含在 Pro 的 US$25 內） | Free 會暫停，不適合正式營運 |
   | LLM | 約 NT$3–60 | 同左 | 1–10 萬則訊息／月的量級 |
   | 網域 | .tw 約 NT$62／月（NT$744／年） | 同左 | 可讓店家自己持有網域 |
   | LINE OA | NT$0（只用 reply）／NT$1,000（中用量） | 同左 | 通常由店家自己的 OA 付費 |
